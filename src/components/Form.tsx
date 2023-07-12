@@ -1,4 +1,14 @@
-function Form() {
+import React from 'react';
+
+type FormProps = {
+  onCancel: () => void;
+};
+
+function Form({ onCancel }: FormProps) {
+  function handleCadastrar() {
+
+  }
+
   return (
     <div>
       <label>
@@ -17,8 +27,8 @@ function Form() {
         URL
         <input type="text" />
       </label>
-      <button>Cadastrar</button>
-      <button>Cancelar</button>
+      <button onClick={ handleCadastrar }>Cadastrar</button>
+      <button onClick={ onCancel }>Cancelar</button>
     </div>
   );
 }
