@@ -1,9 +1,10 @@
 import './App.css';
+import Title from './components/title';
 
 function App() {
   return (
     <div>
-      Hello Worldd
+      <Title />
     </div>
   );
 }
