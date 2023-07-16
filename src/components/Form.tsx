@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 
 type FormProps = {
   onCancel: () => void;
+  onCadastrar: (servico: any) => void;
 };
 
-function Form({ onCancel }: FormProps) {
+function Form({ onCancel, onCadastrar }: FormProps) {
   const [name, setName] = useState(''); // controla inputs
   const [login, setLogin] = useState('');
   const [password, setPassword] = useState('');
@@ -17,7 +18,15 @@ function Form({ onCancel }: FormProps) {
   const [Special, setHasSpecialChars] = useState(false);
 
   function handleCadastrar() {
-    // Lógica para cadastrar
+    if (isValid && name && login && password && url) {
+      const servico = {
+        name,
+        login,
+        password,
+        url,
+      };
+      onCadastrar(servico);
+    }
   }
 
   function validatePassword(passwordValue: string) {
