@@ -3,5 +3,43 @@
 }
 
 .invalid-password-check {
-  color: #f58989;
+  color: #b60909ea;
+}
+body {
+  background-color: #DBCA9A;
+  color:antiquewhite
+
+}
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #A7623C;
+  padding: 50px;
+  border-radius: 20px;
+  border: solid 2px rgb(240, 10, 10);
+}
+.main-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  border: solid black 1px;
+}
+
+.button-senha {
+  background-color: #34544F;
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 70%;
+  font-size: large;
+}
+
+.text-password {
+  border-top: black solid 2px;
+  margin-top: 30px;
+  padding-top: 20px;
+  width: 100%;
+  text-align: center;
 }

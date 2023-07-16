@@ -1,4 +1,5 @@
 import React from 'react';
+import Swal from 'sweetalert2';
 
 type ListaServicosProps = {
   servicos: any[];
@@ -11,7 +12,7 @@ function ListaServicos({ servicos, onRemoverServico }: ListaServicosProps) {
   }
 
   if (servicos.length === 0) {
-    return <p>Nenhuma senha cadastrada.</p>;
+    return <p className="text-password">Nenhuma senha cadastrada.</p>;
   }
   return (
     <div>
@@ -35,10 +36,12 @@ function ListaServicos({ servicos, onRemoverServico }: ListaServicosProps) {
           >
             Remover
           </button>
+
         </div>
+
       ))}
     </div>
   );
 }
-
+Swal.fire('Serviço cadastrado com sucesso');
 export default ListaServicos;

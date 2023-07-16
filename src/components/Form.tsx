@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import Swal from 'sweetalert2';
 
 type FormProps = {
   onCancel: () => void;
@@ -26,9 +27,12 @@ function Form({ onCancel, onCadastrar }: FormProps) {
         url,
       };
       onCadastrar(servico);
+      exibirAlerta();
     }
   }
-
+  function exibirAlerta() {
+    Swal.fire({ text: 'Serviço cadastrado com sucesso', timer: 1500 });
+  }
   function validatePassword(passwordValue: string) {
     const hasEightCharacters = passwordValue.length >= 8; // verifica senhas
     const hasSixteenCharacters = passwordValue.length <= 16;

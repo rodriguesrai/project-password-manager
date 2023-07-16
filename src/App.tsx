@@ -1,8 +1,8 @@
-import './App.css';
 import React, { useState } from 'react';
 import Form from './components/Form';
 import Title from './components/title';
 import ListaServicos from './components/ListaServicos';
+import './App.css';
 
 function App() {
   const [mostrarFormulario, setMostrarFormulario] = useState(false);
@@ -30,21 +30,28 @@ function App() {
   };
 
   return (
-    <div>
-      <Title />
-      {!mostrarFormulario && (
-        <button onClick={ handleFormulario }>Cadastrar nova senha</button>
-      )}
-      {mostrarFormulario && (
-        <Form
-          onCancel={ handleCancelarFormulario }
-          onCadastrar={ handleCadastrarServico }
+    <div className="main-container">
+      <div className="main">
+        <Title />
+        {!mostrarFormulario && (
+          <button
+            className="button-senha"
+            onClick={ handleFormulario }
+          >
+            Cadastrar nova senha
+          </button>
+        )}
+        {mostrarFormulario && (
+          <Form
+            onCancel={ handleCancelarFormulario }
+            onCadastrar={ handleCadastrarServico }
+          />
+        )}
+        <ListaServicos
+          servicos={ servicos }
+          onRemoverServico={ handleRemoverServico }
         />
-      )}
-      <ListaServicos
-        servicos={ servicos }
-        onRemoverServico={ handleRemoverServico }
-      />
+      </div>
     </div>
   );
 }
