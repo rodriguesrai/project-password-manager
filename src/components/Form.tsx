@@ -5,22 +5,32 @@ type FormProps = {
 };
 
 function Form({ onCancel }: FormProps) {
-  const [name, setName] = useState('');
+  const [name, setName] = useState(''); // controla inputs
   const [login, setLogin] = useState('');
   const [password, setPassword] = useState('');
   const [url, setUrl] = useState('');
   const [isValid, setIsValid] = useState(false);
+
+  const [minCaract, setHasMinLength] = useState(false);// estado dos <p>
+  const [maxCaract, setHasMaxLength] = useState(false);
+  const [LettersAndNumbers, setHasLettersAndNumbers] = useState(false);
+  const [Special, setHasSpecialChars] = useState(false);
 
   function handleCadastrar() {
     // Lógica para cadastrar
   }
 
   function validatePassword(passwordValue: string) {
-    const hasEightCharacters = passwordValue.length >= 8;
+    const hasEightCharacters = passwordValue.length >= 8; // verifica senhas
     const hasSixteenCharacters = passwordValue.length <= 16;
     const hasLetters = /[a-zA-Z]/.test(passwordValue);
     const hasNumbers = /\d/.test(passwordValue);
     const hasSpecialChars = /[^a-zA-Z0-9]/.test(passwordValue);
+
+    setHasMinLength(hasEightCharacters); // atualiza estado dos <p>
+    setHasMaxLength(hasSixteenCharacters);
+    setHasLettersAndNumbers(hasLetters && hasNumbers);
+    setHasSpecialChars(hasSpecialChars);
     return (
       hasEightCharacters
       && hasSixteenCharacters
@@ -30,7 +40,7 @@ function Form({ onCancel }: FormProps) {
     );
   }
 
-  function handleInputChange(event: React.ChangeEvent<HTMLInputElement>) {
+  function handleInputChange(event: React.ChangeEvent<HTMLInputElement>) { // onChange dos inputs
     const { name: inputName, value } = event.target;
 
     if (inputName === 'name') {
@@ -73,6 +83,26 @@ function Form({ onCancel }: FormProps) {
           type="password"
           onChange={ handleInputChange }
         />
+        {!minCaract ? (
+          <p className="invalid-password-check">Possuir 8 ou mais caracteres</p>
+        ) : (
+          <p className="valid-password-check">Possuir 8 ou mais caracteres</p>
+        )}
+        {!maxCaract ? (
+          <p className="invalid-password-check">Possuir até 16 caracteres</p>
+        ) : (
+          <p className="valid-password-check">Possuir até 16 caracteres</p>
+        )}
+        {!LettersAndNumbers ? (
+          <p className="invalid-password-check">Possuir letras e números</p>
+        ) : (
+          <p className="valid-password-check">Possuir letras e números</p>
+        )}
+        {!Special ? (
+          <p className="invalid-password-check">Possuir algum caractere especial</p>
+        ) : (
+          <p className="valid-password-check">Possuir algum caractere especial</p>
+        )}
       </label>
       <label>
         URL:
@@ -90,6 +120,7 @@ function Form({ onCancel }: FormProps) {
         Cadastrar
       </button>
       <button onClick={ onCancel }>Cancelar</button>
+
     </div>
   );
 }
