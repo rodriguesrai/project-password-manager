@@ -25,6 +25,10 @@ function App() {
     setMostrarFormulario(false);
   };
 
+  const handleRemoverServico = (servico: any) => {
+    setServicos((servicosAtuais) => servicosAtuais.filter((s) => s !== servico));
+  };
+
   return (
     <div>
       <Title />
@@ -37,7 +41,10 @@ function App() {
           onCadastrar={ handleCadastrarServico }
         />
       )}
-      <ListaServicos servicos={ servicos } />
+      <ListaServicos
+        servicos={ servicos }
+        onRemoverServico={ handleRemoverServico }
+      />
     </div>
   );
 }
